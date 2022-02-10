@@ -21,10 +21,25 @@ export const QuizStyles = StyleSheet.create({
       borderRadius: 10,
       marginTop: 0
    },
+   buttonTop: {
+      backgroundColor: 'red',
+   },
+   buttonBottom: {
+      backgroundColor: 'red',
+      width: "50%"
+   },
+   bottomNav: {
+      display: "flex",
+      flexDirection: "row"
+   },
    buttonText: {
       fontSize: 25,
       color: 'white',
       textAlign: 'center',
       margin: 5
+   },
+   webview:{
+      height: "50%",
+      marginTop: 0
    }
 })
