@@ -38,8 +38,23 @@ export const QuizStyles = StyleSheet.create({
       textAlign: 'center',
       margin: 5
    },
-   webview:{
-      height: "50%",
+   webview: {
       marginTop: 0
+   },
+   hidden: {
+      display: "none"
+   },
+   answersArea: {
+      display: "flex",
+      marginTop: 0,
+      height: "85%",
+   },
+   answersCard: {
+      borderRadius: 10,
+      backgroundColor: 'red',
+      margin: 10,
+      marginLeft: 20,
+      marginRight: 20,
+      padding: 10
    }
 })
