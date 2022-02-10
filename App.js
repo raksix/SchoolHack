@@ -20,26 +20,33 @@ import WebView from 'react-native-webview';
 import MenuIndex from './src/pages/menu';
 import { MenuContext } from './src/contexts/menuContext';
 import QuizIndex from './src/pages/quiziz';
+import { QuizContext } from './src/contexts/quizContext';
 
 
 const App = () => {
 
    const [menu, setMenu] = useState("index")
+   const [quiz, setQuiz] = useState({
+      id: "",
+      data: {}
+   })
 
    return (
-      <MenuContext.Provider value={[menu, setMenu]}>
-         <SafeAreaView style={styles.body}>
-            {menu === "index" ? (
-               <MenuIndex />
-            ) : (
-               menu === "quiz" ? (
-                  <QuizIndex />
-               ): (
-                  <QuizIndex />
-               )
-            )}
-         </SafeAreaView>
-      </MenuContext.Provider>
+      <QuizContext.Provider value={[quiz, setQuiz]}>
+         <MenuContext.Provider value={[menu, setMenu]}>
+            <SafeAreaView style={styles.body}>
+               {menu === "index" ? (
+                  <MenuIndex />
+               ) : (
+                  menu === "quiz" ? (
+                     <QuizIndex />
+                  ) : (
+                     <QuizIndex />
+                  )
+               )}
+            </SafeAreaView>
+         </MenuContext.Provider>
+      </QuizContext.Provider>
    );
 };
 
