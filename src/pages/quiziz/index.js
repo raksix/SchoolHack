@@ -10,7 +10,7 @@ import { QuizStyles } from "./style";
 export default function QuizIndex() {
 
    const [menu, setMenu] = useContext(MenuContext)
-   const [section, setSection] = useContext("quiz")
+   const [section, setSection] = useState("quiz")
    const [quiz, setQuiz] = useContext(QuizContext)
    const [quizPage, setQuizPage] = useState(false)
 
@@ -35,8 +35,8 @@ export default function QuizIndex() {
                <Pressable style={QuizStyles.buttonTop} onPress={() => { setQuizPage(false) }}><Text style={QuizStyles.buttonText}>Quizeden Çık</Text></Pressable>
                <QuizWebView></QuizWebView>
                <View style={QuizStyles.bottomNav}>
-                  <Pressable style={QuizStyles.buttonBottom} onPress={() => { setQuizPage(false) }}><Text style={QuizStyles.buttonText}>Quiz</Text></Pressable>
-                  <Pressable style={QuizStyles.buttonBottom} onPress={() => { setQuizPage(false) }}><Text style={QuizStyles.buttonText}>Ğ</Text></Pressable>
+                  <Pressable style={QuizStyles.buttonBottom} onPress={() => { setSection("quiz") }}><Text style={QuizStyles.buttonText}>Quiz</Text></Pressable>
+                  <Pressable style={QuizStyles.buttonBottom} onPress={() => { setSection("hack") }}><Text style={QuizStyles.buttonText}>Ğ</Text></Pressable>
                </View>
             </>
          )
@@ -44,10 +44,9 @@ export default function QuizIndex() {
          return (
             <>
                <Pressable style={QuizStyles.buttonTop} onPress={() => { setQuizPage(false) }}><Text style={QuizStyles.buttonText}>Quizeden Çık</Text></Pressable>
-               <QuizWebView></QuizWebView>
                <View style={QuizStyles.bottomNav}>
-                  <Pressable style={QuizStyles.buttonBottom} onPress={() => { setQuizPage(false) }}><Text style={QuizStyles.buttonText}>Quiz</Text></Pressable>
-                  <Pressable style={QuizStyles.buttonBottom} onPress={() => { setQuizPage(false) }}><Text style={QuizStyles.buttonText}>Ğ</Text></Pressable>
+                  <Pressable style={QuizStyles.buttonBottom} onPress={() => { setSection("quiz") }}><Text style={QuizStyles.buttonText}>Quiz</Text></Pressable>
+                  <Pressable style={QuizStyles.buttonBottom} onPress={() => { setSection("hack") }}><Text style={QuizStyles.buttonText}>Ğ</Text></Pressable>
                </View>
             </>
          )
