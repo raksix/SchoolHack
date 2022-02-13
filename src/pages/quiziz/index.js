@@ -3,6 +3,7 @@ import { Pressable, ScrollView, Text, TextInput, View } from "react-native";
 import WebView from "react-native-webview";
 import { MenuContext } from "../../contexts/menuContext";
 import { QuizContext } from "../../contexts/quizContext";
+import { getReq } from "../../fetch";
 import { QuizWebView } from "./components/webview";
 import { QuizStyles } from "./style";
 
@@ -29,7 +30,18 @@ export default function QuizIndex() {
                   data: {}
                })
             }}></TextInput>
-            <Pressable style={QuizStyles.button} onPress={() => { setQuizPage(true) }}><Text style={QuizStyles.buttonText}>Quize Gir</Text></Pressable>
+            <Pressable style={QuizStyles.button} onPress={() => {
+               getReq({
+                  endpoint: "/quiziz/",
+                  id: quiz.id
+               }).then(res => {
+                  setQuizPage(true)
+                  setQuiz({
+                     id: quiz.id,
+                     data: res
+                  })
+               })
+            }}><Text style={QuizStyles.buttonText}>Quize Gir</Text></Pressable>
          </ScrollView>
       ) : (
          section === "quiz" ? (
