@@ -59,13 +59,16 @@ export default function QuizIndex() {
                <QuizWebView url={"https://quizizz.com/join?gc=" + quiz.id} style={QuizStyles.hidden}></QuizWebView>
                <View style={QuizStyles.answersArea}>
                   <Text style={QuizStyles.buttonText}>Cevaplar</Text>
-                  {quiz.data.answers.map((a, idx) => (
-                     <View style={QuizStyles.answersCard}>
-                        <Text style={QuizStyles.buttonText}>Soru: ASDASDASDDASDSAD</Text>
-                        <Text style={QuizStyles.buttonText}>Cevap: ASDASDASDDASDSAD</Text>
+                  {quiz.data.data.answers.map((a, idx) => (
+                     <View style={QuizStyles.answersCard} key={idx}>
+                        {a.question.map((a, idx) => (
+                           <Text style={QuizStyles.buttonText} key={idx}>Soru: {a.text}</Text>
+                        ))}
+                        {a.answers.map((a, idx) => (
+                           <Text style={QuizStyles.buttonText} key={idx}>Soru: {a.text}</Text>
+                        ))}
                      </View>
                   ))}
-
                </View>
                <View style={QuizStyles.bottomNav}>
                   <Pressable style={QuizStyles.buttonBottom} onPress={() => { setSection("quiz") }}><Text style={QuizStyles.buttonText}>Quiz</Text></Pressable>
