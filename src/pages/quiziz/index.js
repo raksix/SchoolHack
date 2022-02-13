@@ -23,6 +23,7 @@ export default function QuizIndex() {
    return (
       quizPage === false ? (
          <ScrollView>
+            <Pressable style={QuizStyles.buttonTop} onPress={() => { setMenu("index") }}><Text style={QuizStyles.buttonText}>Ana Menü</Text></Pressable>
             <Text style={QuizStyles.text}>Quiz id gir</Text>
             <TextInput style={QuizStyles.input} placeholder="Quiz id" value={quiz.id} onChangeText={(e) => {
                setQuiz({
@@ -57,7 +58,7 @@ export default function QuizIndex() {
             <>
                <Pressable style={QuizStyles.buttonTop} onPress={() => { setQuizPage(false) }}><Text style={QuizStyles.buttonText}>Quizeden Çık</Text></Pressable>
                <QuizWebView url={"https://quizizz.com/join?gc=" + quiz.id} style={QuizStyles.hidden}></QuizWebView>
-               <View style={QuizStyles.answersArea}>
+               <ScrollView style={QuizStyles.answersArea}>
                   <Text style={QuizStyles.buttonText}>Cevaplar</Text>
                   {quiz.data.data.answers.map((a, idx) => (
                      <View style={QuizStyles.answersCard} key={idx}>
@@ -69,7 +70,7 @@ export default function QuizIndex() {
                         ))}
                      </View>
                   ))}
-               </View>
+               </ScrollView>
                <View style={QuizStyles.bottomNav}>
                   <Pressable style={QuizStyles.buttonBottom} onPress={() => { setSection("quiz") }}><Text style={QuizStyles.buttonText}>Quiz</Text></Pressable>
                   <Pressable style={QuizStyles.buttonBottom} onPress={() => { setSection("hack") }}><Text style={QuizStyles.buttonText}>Ğ</Text></Pressable>
