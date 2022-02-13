@@ -65,7 +65,7 @@ export default function QuizIndex() {
                            <Text style={QuizStyles.buttonText} key={idx}>Soru: {a.text}</Text>
                         ))}
                         {a.answers.map((a, idx) => (
-                           <Text style={QuizStyles.buttonText} key={idx}>Soru: {a.text}</Text>
+                           <Text style={QuizStyles.buttonText} key={idx}>{idx + 1}. Cevap: {a.text}</Text>
                         ))}
                      </View>
                   ))}
