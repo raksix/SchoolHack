@@ -11,6 +11,7 @@ export default function MenuIndex() {
    return (
       <ScrollView>
          <View style={MenuStyles.menu}>
+            <Text>ğ</Text>
             <Pressable style={MenuStyles.MenuSelector} onPress={() => {
                setMenu("eba")
             }}>

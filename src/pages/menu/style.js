@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native";
 
 export const MenuStyles = StyleSheet.create({
    menu: {
-      marginTop: "50%",
+      marginTop: "25%",
       display: 'flex',
       flexDirection: 'row',
       flexWrap: 'wrap',
@@ -20,6 +20,6 @@ export const MenuStyles = StyleSheet.create({
       paddingBottom: 50,
       width: '45%',
       backgroundColor: 'red',
-      borderRadius: 10
+      borderRadius: 20,
    }
 })
