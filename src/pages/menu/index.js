@@ -12,6 +12,16 @@ export default function MenuIndex() {
       <ScrollView>
          <View style={MenuStyles.menu}>
             <Pressable style={MenuStyles.MenuSelector} onPress={() => {
+               setMenu("eba")
+            }}>
+               <Text style={MenuStyles.MenuText}>Boş</Text>
+            </Pressable>
+            <Pressable style={MenuStyles.MenuSelector} onPress={() => {
+               setMenu("eba")
+            }}>
+               <Text style={MenuStyles.MenuText}>Eba</Text>
+            </Pressable>
+            <Pressable style={MenuStyles.MenuSelector} onPress={() => {
                setMenu("quiz")
             }}>
                <Text style={MenuStyles.MenuText}>Quizizz</Text>
