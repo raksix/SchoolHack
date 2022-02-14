@@ -14,6 +14,8 @@ export default function QuizIndex() {
    const [section, setSection] = useState("quiz")
    const [quiz, setQuiz] = useContext(QuizContext)
    const [quizPage, setQuizPage] = useState(false)
+   const [click, setClick] = useState(false)
+   const [err, setErr] = useState("")
 
    useEffect(() => {
 
@@ -24,6 +26,7 @@ export default function QuizIndex() {
       quizPage === false ? (
          <ScrollView>
             <Pressable style={QuizStyles.buttonTop} onPress={() => { setMenu("index") }}><Text style={QuizStyles.buttonText}>Ana Menü</Text></Pressable>
+            <Text style={QuizStyles.text}>{err}</Text>
             <Text style={QuizStyles.text}>Quiz id gir</Text>
             <TextInput style={QuizStyles.input} placeholder="Quiz id" value={quiz.id} onChangeText={(e) => {
                setQuiz({
@@ -31,18 +34,28 @@ export default function QuizIndex() {
                   data: {}
                })
             }}></TextInput>
-            <Pressable style={QuizStyles.button} onPress={() => {
-               getReq({
-                  endpoint: "/quiziz/",
-                  id: quiz.id
-               }).then(res => {
-                  setQuizPage(true)
-                  setQuiz({
-                     id: quiz.id,
-                     data: res
+            {click === false ? (
+               <Pressable style={QuizStyles.button} onPress={() => {
+                  setClick(true)
+                  getReq({
+                     endpoint: "/quiziz/",
+                     id: quiz.id
+                  }).then(res => {
+                     if (res.error === false) {
+                        setQuizPage(true)
+                        setQuiz({
+                           id: quiz.id,
+                           data: res
+                        })
+                     }else{
+                        setErr(res.message)
+                        setClick(false)
+                     }
                   })
-               })
-            }}><Text style={QuizStyles.buttonText}>Quize Gir</Text></Pressable>
+               }}><Text style={QuizStyles.buttonText}>Quize Gir</Text></Pressable>
+            ) : (
+               <Pressable style={QuizStyles.button} ><Text style={QuizStyles.buttonText}>Giriliyor az bekle</Text></Pressable>
+            )}
          </ScrollView>
       ) : (
          section === "quiz" ? (
