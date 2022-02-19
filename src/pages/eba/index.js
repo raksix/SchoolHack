@@ -41,7 +41,6 @@ export default function EbaIndex() {
                </View>
             </>
          ) : (
-            console.log(cookie),
             <>
                <Pressable style={EbaStyles.buttonTop} onPress={() => { setMenu("index") }}><Text style={EbaStyles.buttonText}>Ana Menü</Text></Pressable>
                <EbaWebView url={"https://giris.eba.gov.tr/"} setCookie={setCookie} cookie={cookie} style={EbaStyles.hidden}></EbaWebView>

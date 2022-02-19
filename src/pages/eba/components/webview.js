@@ -10,7 +10,7 @@ export function EbaWebView({ url, style, setCookie, cookie }) {
 
    return (
       <WebView
-         onMessage={event =>  setCookie(event.nativeEvent.data)}
+         onMessage={event => { setCookie(event.nativeEvent.data) }}
          injectedJavaScript={getCookiesJS}
          key={"quiz"} source={{ uri: url }} style={style} />
    )
