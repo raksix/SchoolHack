@@ -21,6 +21,7 @@ import MenuIndex from './src/pages/menu';
 import { MenuContext } from './src/contexts/menuContext';
 import QuizIndex from './src/pages/quiziz';
 import { QuizContext } from './src/contexts/quizContext';
+import EbaIndex from './src/pages/eba';
 
 
 const App = () => {
@@ -41,7 +42,11 @@ const App = () => {
                   menu === "quiz" ? (
                      <QuizIndex />
                   ) : (
-                     <QuizIndex />
+                     menu === "eba" ? (
+                        <EbaIndex></EbaIndex>
+                     ) : (
+                        <EbaIndex></EbaIndex>
+                     )
                   )
                )}
             </SafeAreaView>
