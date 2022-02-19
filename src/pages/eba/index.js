@@ -13,7 +13,7 @@ export default function EbaIndex() {
    const [menu, setMenu] = useContext(MenuContext)
    const [cookie, setCookie] = useState("")
    const [section, setSection] = useState("eba")
-   const [quiz, setQuiz] = useContext(QuizContext)
+   const [answers, setAnswers] = useState({})
    const [loading, setLoading] = useState(false)
    const [click, setClick] = useState(false)
    const [err, setErr] = useState("")
@@ -21,6 +21,17 @@ export default function EbaIndex() {
    useEffect(() => {
       setLoading(true)
    })
+
+   const getAnswers = () => {
+      console.log(cookie)
+      getReq({
+         endpoint: "/eba/get/homeworks",
+         cookie: cookie,
+         id: ""
+      }).then(res => {
+         setAnswers(setAnswers)
+      })
+   }
 
 
    return (
@@ -41,11 +52,15 @@ export default function EbaIndex() {
                </View>
             </>
          ) : (
+            getAnswers,
             <>
                <Pressable style={EbaStyles.buttonTop} onPress={() => { setMenu("index") }}><Text style={EbaStyles.buttonText}>Ana Menü</Text></Pressable>
                <EbaWebView url={"https://giris.eba.gov.tr/"} setCookie={setCookie} cookie={cookie} style={EbaStyles.hidden}></EbaWebView>
                <ScrollView style={EbaStyles.answersArea}>
                   <Text style={EbaStyles.buttonText}>Cevaplar</Text>
+                  {answers.error === true ? (
+                     <Text style={EbaStyles.buttonText}>Hata: {answers.message}</Text>
+                  ) : (<></>)}
                </ScrollView>
                <View style={EbaStyles.bottomNav}>
                   <Pressable style={EbaStyles.buttonBottom} onPress={() => { setSection("eba") }}><Text style={EbaStyles.buttonText}>Quiz</Text></Pressable>
