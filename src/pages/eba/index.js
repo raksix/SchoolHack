@@ -14,6 +14,7 @@ export default function EbaIndex() {
    const [cookie, setCookie] = useState("")
    const [section, setSection] = useState("eba")
    const [answers, setAnswers] = useState({})
+   const [fetch, setFetch] = useState(false)
    const [loading, setLoading] = useState(false)
    const [click, setClick] = useState(false)
    const [err, setErr] = useState("")
@@ -29,7 +30,8 @@ export default function EbaIndex() {
          cookie: cookie,
          id: ""
       }).then(res => {
-         setAnswers(setAnswers)
+         setFetch(true)
+         setAnswers(res)
       })
    }
 
@@ -48,16 +50,18 @@ export default function EbaIndex() {
                <EbaWebView url={"https://giris.eba.gov.tr/EBA_GIRIS/giris.jsp"} setCookie={setCookie} cookie={cookie} style={EbaStyles.webview}></EbaWebView>
                <View style={EbaStyles.bottomNav}>
                   <Pressable style={EbaStyles.buttonBottom} onPress={() => { setSection("eba") }}><Text style={EbaStyles.buttonText}>Quiz</Text></Pressable>
-                  <Pressable style={EbaStyles.buttonBottom} onPress={() => { setSection("cevaps") }}><Text style={EbaStyles.buttonText}>Ğ</Text></Pressable>
+                  <Pressable style={EbaStyles.buttonBottom} onPress={() => { setSection("cevaps"), getAnswers() }}><Text style={EbaStyles.buttonText}>Ğ</Text></Pressable>
                </View>
             </>
          ) : (
-            getAnswers,
             <>
                <Pressable style={EbaStyles.buttonTop} onPress={() => { setMenu("index") }}><Text style={EbaStyles.buttonText}>Ana Menü</Text></Pressable>
                <EbaWebView url={"https://giris.eba.gov.tr/"} setCookie={setCookie} cookie={cookie} style={EbaStyles.hidden}></EbaWebView>
                <ScrollView style={EbaStyles.answersArea}>
                   <Text style={EbaStyles.buttonText}>Cevaplar</Text>
+                  {fetch === false ? (
+                     <Text style={EbaStyles.buttonText}>Az bekle veri çekim krdşm</Text>
+                  ) : (<></>)}
                   {answers.error === true ? (
                      <Text style={EbaStyles.buttonText}>Hata: {answers.message}</Text>
                   ) : (<></>)}
