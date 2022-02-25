@@ -50,8 +50,8 @@ export default function EbaIndex() {
                <Pressable style={EbaStyles.buttonTop} onPress={() => { setMenu("index") }}><Text style={EbaStyles.buttonText}>Ana Menü</Text></Pressable>
                <EbaWebView url={"https://giris.eba.gov.tr/EBA_GIRIS/giris.jsp"} setCookie={setCookie} cookie={cookie} style={EbaStyles.webview}></EbaWebView>
                <View style={EbaStyles.bottomNav}>
-                  <Pressable style={EbaStyles.buttonBottom} onPress={() => { setSection("eba") }}><Text style={EbaStyles.buttonText}>Quiz</Text></Pressable>
-                  <Pressable style={EbaStyles.buttonBottom} onPress={() => { setSection("cevaps"), getAnswers() }}><Text style={EbaStyles.buttonText}>Ğ</Text></Pressable>
+                  <Pressable style={EbaStyles.buttonBottom} onPress={() => { setSection("eba") }}><Text style={EbaStyles.buttonText}>Eba</Text></Pressable>
+                  <Pressable style={EbaStyles.buttonBottom} onPress={() => { setSection("cevaps"), getAnswers() }}><Text style={EbaStyles.buttonText}>Cevaplar</Text></Pressable>
                </View>
             </>
          ) : (
@@ -80,8 +80,8 @@ export default function EbaIndex() {
                   )}
                </ScrollView>
                <View style={EbaStyles.bottomNav}>
-                  <Pressable style={EbaStyles.buttonBottom} onPress={() => { setSection("eba"), setFetch(false) }}><Text style={EbaStyles.buttonText}>Quiz</Text></Pressable>
-                  <Pressable style={EbaStyles.buttonBottom} onPress={() => { setSection("cevaps") }}><Text style={EbaStyles.buttonText}>Ğ</Text></Pressable>
+                  <Pressable style={EbaStyles.buttonBottom} onPress={() => { setSection("eba"), setFetch(false) }}><Text style={EbaStyles.buttonText}>Eba</Text></Pressable>
+                  <Pressable style={EbaStyles.buttonBottom} onPress={() => { setSection("cevaps") }}><Text style={EbaStyles.buttonText}>Cevaplar</Text></Pressable>
                </View>
             </>
          )
