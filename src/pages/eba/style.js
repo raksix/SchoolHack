@@ -56,5 +56,21 @@ export const EbaStyles = StyleSheet.create({
       marginLeft: 20,
       marginRight: 20,
       padding: 10
+   },
+   workText: {
+      color: 'white',
+      fontSize: 25,
+      textAlign: 'center',
+      borderBottomWidth: 1,
+      borderTopWidth: 1,
+      borderColor: 'white'
+   },
+   cevapText: {
+      color: 'white',
+      fontSize: 25,
+      textAlign: 'center',
+      borderBottomWidth: .5,
+      borderTopWidth: .5,
+      borderColor: 'white'
    }
 })

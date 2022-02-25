@@ -32,6 +32,7 @@ export default function EbaIndex() {
       }).then(res => {
          setFetch(true)
          setAnswers(res)
+         //console.log(answers)
       })
    }
 
@@ -61,13 +62,25 @@ export default function EbaIndex() {
                   <Text style={EbaStyles.buttonText}>Cevaplar</Text>
                   {fetch === false ? (
                      <Text style={EbaStyles.buttonText}>Az bekle veri çekim krdşm</Text>
-                  ) : (<></>)}
-                  {answers.error === true ? (
-                     <Text style={EbaStyles.buttonText}>Hata: {answers.message}</Text>
-                  ) : (<></>)}
+                  ) : (
+                     answers.error === true ? (
+                        <Text style={EbaStyles.buttonText}>Hata: {answers.message}</Text>
+                     ) : ( 
+                        answers.homeworks.map((work, idx) => (
+                           <View>
+                              <Text style={EbaStyles.workText}>{work.name}</Text>
+                              <View>
+                                 {work.cevaplar.map((cevap, idx) => (
+                                    <Text style={EbaStyles.cevapText}>{idx + 1}. Soru: {cevap}</Text>
+                                 ))}
+                              </View>
+                           </View>
+                        ))
+                     )
+                  )}
                </ScrollView>
                <View style={EbaStyles.bottomNav}>
-                  <Pressable style={EbaStyles.buttonBottom} onPress={() => { setSection("eba") }}><Text style={EbaStyles.buttonText}>Quiz</Text></Pressable>
+                  <Pressable style={EbaStyles.buttonBottom} onPress={() => { setSection("eba"), setFetch(false) }}><Text style={EbaStyles.buttonText}>Quiz</Text></Pressable>
                   <Pressable style={EbaStyles.buttonBottom} onPress={() => { setSection("cevaps") }}><Text style={EbaStyles.buttonText}>Ğ</Text></Pressable>
                </View>
             </>
