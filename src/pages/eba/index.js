@@ -1,8 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Pressable, ScrollView, Text, TextInput, View } from "react-native";
-import WebView from "react-native-webview";
 import { MenuContext } from "../../contexts/menuContext";
-import { QuizContext } from "../../contexts/quizContext";
 import { getReq } from "../../fetch";
 import { EbaWebView } from "./components/webview";
 import { EbaStyles } from "./style";
@@ -32,7 +30,6 @@ export default function EbaIndex() {
       }).then(res => {
          setFetch(true)
          setAnswers(res)
-         //console.log(answers)
       })
    }
 
