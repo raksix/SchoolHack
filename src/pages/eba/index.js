@@ -12,7 +12,10 @@ export default function EbaIndex() {
    const [state, setState] = useState("https://giris.eba.gov.tr/EBA_GIRIS/giris.jsp")
    const [cookie, setCookie] = useState("")
    const [section, setSection] = useState("eba")
-   const [answers, setAnswers] = useState({})
+   const [answers, setAnswers] = useState({
+      homeworks: [],
+      error: true,
+   })
    const [fetch, setFetch] = useState(false)
    const [loading, setLoading] = useState(false)
    const [click, setClick] = useState(false)
@@ -28,8 +31,8 @@ export default function EbaIndex() {
          cookie: cookie,
          id: ""
       }).then(res => {
-         setFetch(true)
          setAnswers(res)
+         setFetch(true)
       })
    }
 
@@ -62,17 +65,25 @@ export default function EbaIndex() {
                   ) : (
                      answers.error === true ? (
                         <Text style={EbaStyles.buttonText}>Hata: {answers.message}</Text>
-                     ) : ( 
-                        answers.homeworks.map((work, idx) => (
-                           <View>
-                              <Text style={EbaStyles.workText}>{work.name}</Text>
-                              <View>
-                                 {work.cevaplar.map((cevap, idx) => (
-                                    <Text style={EbaStyles.cevapText}>{idx + 1}. Soru: {cevap}</Text>
-                                 ))}
-                              </View>
-                           </View>
-                        ))
+                     ) : (
+                        answers.homeworks ? (
+                           answers.homeworks.length > 0 ? (
+                              answers.homeworks.map((work, idx) => (
+                                 <View>
+                                    <Text style={EbaStyles.workText}>{work.name}</Text>
+                                    <View>
+                                       {work.cevaplar.map((cevap, idx) => (
+                                          <Text style={EbaStyles.cevapText}>{idx + 1}. Soru: {cevap}</Text>
+                                       ))}
+                                    </View>
+                                 </View>
+                              ))
+                           ) : (
+                              <Text style={EbaStyles.buttonText}>Hata: Ödevin yok Ğ</Text>
+                              )
+                        ) : (
+                           <Text style={EbaStyles.buttonText}>Hata</Text>
+                        )
                      )
                   )}
                </ScrollView>
