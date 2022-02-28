@@ -11,6 +11,7 @@ import { EbaStyles } from "./style";
 export default function EbaIndex() {
 
    const [menu, setMenu] = useContext(MenuContext)
+   const [state, setState] = useState("https://giris.eba.gov.tr/EBA_GIRIS/giris.jsp")
    const [cookie, setCookie] = useState("")
    const [section, setSection] = useState("eba")
    const [answers, setAnswers] = useState({})
@@ -24,7 +25,6 @@ export default function EbaIndex() {
    })
 
    const getAnswers = () => {
-      console.log(cookie)
       getReq({
          endpoint: "/eba/get/homeworks",
          cookie: cookie,
@@ -48,7 +48,7 @@ export default function EbaIndex() {
          section === "eba" ? (
             <>
                <Pressable style={EbaStyles.buttonTop} onPress={() => { setMenu("index") }}><Text style={EbaStyles.buttonText}>Ana Menü</Text></Pressable>
-               <EbaWebView url={"https://giris.eba.gov.tr/EBA_GIRIS/giris.jsp"} setCookie={setCookie} cookie={cookie} style={EbaStyles.webview}></EbaWebView>
+               <EbaWebView url={state} setState={setState} setCookie={setCookie} cookie={cookie} style={EbaStyles.webview}></EbaWebView>
                <View style={EbaStyles.bottomNav}>
                   <Pressable style={EbaStyles.buttonBottom} onPress={() => { setSection("eba") }}><Text style={EbaStyles.buttonText}>Eba</Text></Pressable>
                   <Pressable style={EbaStyles.buttonBottom} onPress={() => { setSection("cevaps"), getAnswers() }}><Text style={EbaStyles.buttonText}>Cevaplar</Text></Pressable>
@@ -57,7 +57,7 @@ export default function EbaIndex() {
          ) : (
             <>
                <Pressable style={EbaStyles.buttonTop} onPress={() => { setMenu("index") }}><Text style={EbaStyles.buttonText}>Ana Menü</Text></Pressable>
-               <EbaWebView url={"https://giris.eba.gov.tr/"} setCookie={setCookie} cookie={cookie} style={EbaStyles.hidden}></EbaWebView>
+               <EbaWebView url={state} setCookie={setCookie} cookie={cookie} style={EbaStyles.hidden}></EbaWebView>
                <ScrollView style={EbaStyles.answersArea}>
                   <Text style={EbaStyles.buttonText}>Cevaplar</Text>
                   {fetch === false ? (
